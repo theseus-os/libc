@@ -153,6 +153,12 @@ cfg_if! {
 
         mod wasi;
         pub use wasi::*;
+    } else if #[cfg(target_os = "theseus")] {
+        mod fixed_width_ints;
+        pub use fixed_width_ints::*;
+
+        mod hermit;
+        pub use hermit::*;
     } else {
         // non-supported targets: empty...
     }
