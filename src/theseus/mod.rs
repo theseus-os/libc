@@ -25,6 +25,7 @@ pub type ssize_t = isize;
 
 pub type c_long = i64;
 pub type c_ulong = u64;
+pub type off_t = i64;
 
 cfg_if! {
     if #[cfg(target_arch = "x86_64")] {
@@ -38,7 +39,7 @@ cfg_if! {
 // Note: this was copied from other platforms.
 cfg_if! {
 if #[cfg(libc_core_cvoid)] {
-        pub use ::ffi::c_void;
+        pub use ffi::c_void;
     } else {
         // Use repr(u8) as LLVM expects `void*` to be the same as `i8*` to help
         // enable more optimization opportunities around it recognizing things
@@ -54,4 +55,41 @@ if #[cfg(libc_core_cvoid)] {
             __variant2,
         }
     }
+}
+
+
+
+pub const PROT_NONE: c_int = 0;
+pub const PROT_READ: c_int = 1;
+pub const PROT_WRITE: c_int = 2;
+pub const PROT_EXEC: c_int = 4;
+
+
+pub const MAP_FILE: c_int = 0x0000;
+pub const MAP_SHARED: c_int = 0x0001;
+pub const MAP_PRIVATE: c_int = 0x0002;
+pub const MAP_ANON: c_int = 0x0020;
+pub const MAP_ANONYMOUS: c_int = MAP_ANON;
+pub const MAP_FIXED: c_int = 0x0010;
+pub const MAP_FAILED: *mut c_void = !0 as _;
+
+pub const MS_ASYNC: c_int = 0x0001;
+pub const MS_INVALIDATE: c_int = 0x0002;
+pub const MS_SYNC: c_int = 0x0004;
+
+
+extern "C" {
+    pub fn mlock(addr: *const c_void, len: size_t) -> c_int;
+    pub fn munlock(addr: *const c_void, len: size_t) -> c_int;
+    pub fn mlockall(flags: c_int) -> c_int;
+    pub fn munlockall() -> c_int;
+    pub fn mmap(
+        addr: *mut c_void,
+        len: size_t,
+        prot: c_int,
+        flags: c_int,
+        fd: c_int,
+        offset: off_t,
+    ) -> *mut c_void;
+    pub fn munmap(addr: *mut c_void, len: size_t) -> c_int;
 }

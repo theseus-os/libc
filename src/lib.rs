@@ -157,8 +157,8 @@ cfg_if! {
         mod fixed_width_ints;
         pub use fixed_width_ints::*;
 
-        mod hermit;
-        pub use hermit::*;
+        mod theseus;
+        pub use theseus::*;
     } else {
         // non-supported targets: empty...
     }
