@@ -352,7 +352,6 @@ SO_RCVBUF
 SO_RCVLOWAT
 SO_RCVTIMEO
 SO_REUSEADDR
-SO_REUSEPORT
 SO_SNDBUF
 SO_SNDLOWAT
 SO_SNDTIMEO
@@ -759,6 +758,8 @@ setgid
 setlocale
 setlogmask
 setpgid
+setregid
+setreuid
 setsid
 setsockopt
 setuid

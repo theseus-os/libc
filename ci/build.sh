@@ -216,6 +216,7 @@ for TARGET in $TARGETS; do
     fi
 done
 
+# Targets which are not available via rustup and must be built with -Zbuild-std
 RUST_LINUX_NO_CORE_TARGETS="\
 aarch64-pc-windows-msvc \
 aarch64-unknown-freebsd \
@@ -235,9 +236,7 @@ i686-unknown-haiku \
 i686-unknown-netbsd \
 i686-unknown-openbsd \
 i686-wrs-vxworks \
-mips-unknown-linux-uclibc \
 mipsel-sony-psp \
-mipsel-unknown-linux-uclibc \
 mips64-unknown-linux-muslabi64 \
 mips64el-unknown-linux-muslabi64 \
 nvptx64-nvidia-cuda \
@@ -251,6 +250,8 @@ riscv32i-unknown-none-elf \
 riscv32imac-unknown-none-elf \
 riscv32imc-unknown-none-elf \
 riscv32gc-unknown-linux-gnu \
+riscv64gc-unknown-freebsd \
+riscv64gc-unknown-linux-musl \
 riscv64gc-unknown-none-elf \
 riscv64imac-unknown-none-elf \
 s390x-unknown-linux-musl \
