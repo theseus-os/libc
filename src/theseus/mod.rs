@@ -64,16 +64,16 @@ if #[cfg(libc_core_cvoid)] {
 
 #[cfg_attr(feature = "extra_traits", derive(Debug))]
 pub enum FILE {}
-impl Copy for FILE {}
-impl Clone for FILE {
+impl ::Copy for FILE {}
+impl ::Clone for FILE {
     fn clone(&self) -> FILE {
         *self
     }
 }
 #[cfg_attr(feature = "extra_traits", derive(Debug))]
 pub enum fpos_t {} 
-impl Copy for fpos_t {}
-impl Clone for fpos_t {
+impl ::Copy for fpos_t {}
+impl ::Clone for fpos_t {
     fn clone(&self) -> fpos_t {
         *self
     }
